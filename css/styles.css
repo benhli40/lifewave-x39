@@ -34,6 +34,12 @@ header h1, header p, header nav {
     z-index: 2;
 }
 
+.header-image {
+    max-width: 150px; /* Adjust to control image size */
+    height: auto;
+    margin-bottom: 20px; /* Space between image and heading */
+}
+
 
 h1 {
     font-size: 2.5em;
