@@ -1,0 +1,236 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #fff; /* Adjusted text color for readability on dark background */
+}
+
+header {
+    position: relative;
+    text-align: center;
+    padding: 100px 20px;
+    background-image: url('/images/people-7064216_1280.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
+
+/* Overlay styling */
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+    z-index: 1;
+}
+
+/* Ensuring text is above the overlay */
+header h1, header p, header nav {
+    position: relative;
+    z-index: 2;
+}
+
+
+h1 {
+    font-size: 2.5em;
+}
+
+h2 {
+    font-size: 1.8em;
+    color: #a64aff; /* Vibrant purple */
+}
+
+p, li {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #e0e0e0; /* Lightened text for better readability */
+}
+
+/* Header Navigation */
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    margin: 0 10px;
+    color: #c085ff; /* Lighter purple for links */
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+nav a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* FAQ Section */
+#faqs {
+    text-align: center; /* Center-aligns the entire FAQ section */
+}
+
+.faq-item {
+    margin: 20px auto;
+    width: 80%; /* Limits the width to make the section look more centered and neat */
+    max-width: 600px; /* Sets a max width for readability on larger screens */
+    border-bottom: 1px solid #333;
+}
+
+.faq-question {
+    width: 100%;
+    background-color: #1d1a4d;
+    color: #c085ff;
+    padding: 15px;
+    font-size: 1.1em;
+    text-align: center; /* Centers the text inside the button */
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-weight: bold;
+    display: block;
+}
+
+.faq-question:hover {
+    color: #fff;
+}
+
+.faq-answer {
+    display: none;
+    padding: 15px;
+    color: #e0e0e0;
+    background-color: #2c2565;
+    border-left: 3px solid #a64aff;
+    text-align: center; /* Centers the text in the answer section */
+}
+
+/* Default message styling */
+.default-message {
+    text-align: center;
+    font-size: 1.2em;
+    color: #aaa;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+/* Carousel container styling */
+.carousel {
+    display: none; /* Initially hidden */
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    color: #fff;
+}
+
+.carousel-item {
+    display: none;
+    padding: 20px;
+    font-size: 1.2em;
+    font-style: italic;
+}
+
+.carousel-item.active {
+    display: block;
+}
+
+/* Form styling */
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #2c2565;
+    border-radius: 8px;
+}
+
+/* Style for side-by-side radio buttons with aligned labels */
+form div {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between each radio button-label pair */
+}
+
+form label, form input, form textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    font-size: 1em;
+    color: #e0e0e0;
+}
+
+form input, form textarea {
+    padding: 8px;
+    border: 1px solid #4CAF50;
+    border-radius: 4px;
+    background-color: #1d1a4d;
+    color: #fff;
+}
+
+form input[type="radio"] {
+    margin-right: 5px; /* Adds slight space between the radio button and label */
+    vertical-align: middle; /* Ensures the button aligns with the label text */
+}
+
+form label {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1em;
+}
+
+/* Style for radio buttons with aligned labels */
+.radio-group {
+    display: flex;
+    gap: 20px; /* Space between radio button-label pairs */
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center; /* Center-aligns radio buttons with text */
+    gap: 5px; /* Space between the radio button and its label */
+}
+
+.radio-group input[type="radio"] {
+    margin: 0; /* Removes any extra margin around radio buttons */
+    padding: 0; /* Removes any extra padding */
+    vertical-align: middle; /* Ensures the button is centered with the label */
+}
+
+
+form button {
+    background-color: #a64aff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 1.1em;
+}
+
+form button:hover {
+    background-color: #9144e8;
+}
+
+section {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #2c2565; /* Slightly darker navy for contrast */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 10px 0;
+}
+
+footer {
+    background-color: #1d1a4d; /* Deep navy blue */
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
