@@ -57,36 +57,6 @@ function startCarousel() {
     emailjs.init("eSP_6R4oybB6l5hRI");
 })();
 
-function handleFormSubmit() {
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const messageType = document.querySelector('input[name="message_type"]:checked').value;
-    const message = document.getElementById('message').value;
-
-    if (messageType === 'testimonial') {
-        const testimonialList = document.getElementById('testimonial-list');
-        const newTestimonial = document.createElement('div');
-        newTestimonial.classList.add('testimonial-entry');
-        newTestimonial.innerHTML = `<p><strong>${name}:</strong> ${message}</p>`;
-        testimonialList.appendChild(newTestimonial);
-    } else if (messageType === 'comment') {
-        emailjs.send("service_n8gyl7q", "template_ox5e0mh", {
-            name: name,
-            email: email,
-            message: message
-        }).then(
-            function(response) {
-                alert("Thank you for your comment! Your message has been sent.");
-            },
-            function(error) {
-                alert("Oops! There was an error sending your message. Please try again later.");
-            }
-        );
-    }
-
-    document.getElementById('contact-form').reset();
-}
-
 // Smooth scrolling for all anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
