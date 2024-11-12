@@ -6,6 +6,14 @@
     <title>Apply Now - LifeWave X39</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/apply.css">
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("eSP_6R4oybB6l5hRI"); // Replace "YOUR_USER_ID" with your actual User ID from EmailJS
+        })();
+    </script>
 </head>
 <body>
     <header>
@@ -20,9 +28,10 @@
             <a href="apply.html">Apply Now</a>
         </nav>
     </header>
+
     <section id="apply-form">
         <h2>Application Form</h2>
-        <form>
+        <form id="applicationForm">
             <!-- Personal Information Section -->
             <fieldset>
                 <legend>Personal Information</legend>
@@ -30,7 +39,7 @@
                 <input type="text" id="name" name="name" required>
 
                 <label for="age">Age:</label>
-                <input type="number" id="age" name="age" required>                
+                <input type="number" id="age" name="age" required>
             </fieldset>
 
             <!-- Contact Information Section -->
@@ -76,8 +85,42 @@
             <button type="submit">Submit Application</button>
         </form>
     </section>
+
     <footer>
         <p>&copy; 2024 LifeWave X39. All rights reserved.</p>
     </footer>
+
+    <!-- JavaScript for handling the form submission with EmailJS -->
+    <script>
+        document.getElementById('applicationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevents default form submission
+
+            // Collect form data
+            const formData = {
+                name: document.getElementById('name').value,
+                age: document.getElementById('age').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                city: document.getElementById('city').value,
+                state: document.getElementById('state').value,
+                zip: document.getElementById('zip').value,
+                product: document.getElementById('product').value,
+                quantity: document.getElementById('quantity').value,
+                interest_level: document.getElementById('interest-level').value,
+                comments: document.getElementById('comments').value
+            };
+
+            // Send form data using EmailJS
+            emailjs.send("service_za3b08p", "YOUR_TEMPLATE_ID", formData)
+                .then(function(response) {
+                    alert("Application submitted successfully!");
+                }, function(error) {
+                    alert("Failed to send application. Please try again later.");
+                    console.error("Error sending application:", error);
+                });
+        });
+    </script>
 </body>
 </html>
+
