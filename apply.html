@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Now - LifeWave X39</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/apply.css">
+</head>
+<body>
+    <header>
+        <h1>Apply Now</h1>
+        <p>Join the LifeWave X39 community and start your journey to better wellness.</p>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#faqs">FAQs</a>
+            <a href="index.html#testimonials">Testimonials</a>
+            <a href="index.html#contact">Contact Us</a>
+            <a href="apply.html">Apply Now</a>
+        </nav>
+    </header>
+    <section id="apply-form">
+        <h2>Application Form</h2>
+        <form>
+            <!-- Personal Information Section -->
+            <fieldset>
+                <legend>Personal Information</legend>
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>                
+            </fieldset>
+
+            <!-- Contact Information Section -->
+            <fieldset>
+                <legend>Contact Information</legend>
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="address">Mailing Address:</label>
+                <input type="text" id="address" name="address" placeholder="Street Address" required>
+                <input type="text" id="city" name="city" placeholder="City" required>
+                <input type="text" id="state" name="state" placeholder="State" required>
+                <input type="text" id="zip" name="zip" placeholder="ZIP Code" required>
+            </fieldset>
+
+            <!-- Product Interest Section -->
+            <fieldset>
+                <legend>Product Interest</legend>
+                <label for="product">Which LifeWave products are you interested in?</label>
+                <select id="product" name="product" required>
+                    <option value="lifewave-x39">LifeWave X39</option>
+                    <!-- Add additional options if needed -->
+                </select>
+
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" min="1" required>
+
+                <label for="interest-level">How interested are you in the LifeWave product range?</label>
+                <input type="range" id="interest-level" name="interest-level" min="1" max="10">
+            </fieldset>
+
+            <!-- Additional Comments Section -->
+            <fieldset>
+                <legend>Additional Comments</legend>
+                <label for="comments">Let us know any specific goals or questions you have:</label>
+                <textarea id="comments" name="comments" rows="4" placeholder="Your comments here..."></textarea>
+            </fieldset>
+
+            <!-- Submit Button -->
+            <button type="submit">Submit Application</button>
+        </form>
+    </section>
+    <footer>
+        <p>&copy; 2024 LifeWave X39. All rights reserved.</p>
+    </footer>
+</body>
+</html>

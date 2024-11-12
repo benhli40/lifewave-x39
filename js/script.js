@@ -54,7 +54,7 @@ function startCarousel() {
 
 // Initialize EmailJS (if used)
 (function(){
-    emailjs.init("YOUR_USER_ID");
+    emailjs.init("eSP_6R4oybB6l5hRI");
 })();
 
 function handleFormSubmit() {
@@ -70,7 +70,7 @@ function handleFormSubmit() {
         newTestimonial.innerHTML = `<p><strong>${name}:</strong> ${message}</p>`;
         testimonialList.appendChild(newTestimonial);
     } else if (messageType === 'comment') {
-        emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+        emailjs.send("service_n8gyl7q", "template_ox5e0mh", {
             name: name,
             email: email,
             message: message

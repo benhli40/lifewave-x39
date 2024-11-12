@@ -1,0 +1,60 @@
+/* Form Styling for Apply Now Page */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #2c2565;
+    border-radius: 8px;
+    color: #e0e0e0;
+}
+
+fieldset {
+    border: 1px solid #4CAF50;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+legend {
+    font-size: 1.2em;
+    color: #a64aff;
+    padding: 0 10px;
+    font-weight: bold;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #4CAF50;
+    border-radius: 4px;
+    background-color: #1d1a4d;
+    color: #fff;
+    font-size: 1em;
+}
+
+input[type="range"] {
+    width: 100%;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #a64aff;
+    color: #fff;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button[type="submit"]:hover {
+    background-color: #9144e8;
+}
