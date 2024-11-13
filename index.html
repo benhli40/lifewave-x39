@@ -8,13 +8,18 @@
         increase stem cell activity, natural healing patch, wearable wellness patch, wellness patch for energy, 
         increase vitality patch, drug-free pain management, chronic pain solutions, natural pain relief patch,
         X39 healing patch, LifeWave stem cell therapy">
+    <meta name="robots" content="index, follow">
     <title>LifeWave X39 - Natural Healing Patch</title>
     <link rel="stylesheet" href="css/styles.css">
-    <script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
-    <script>
-        (function() {
-            emailjs.init("eSP_6R4oybB6l5hRI"); // Replace with your EmailJS User ID
-        })();
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+    (function(){
+        emailjs.init({
+            publicKey: "eSP_6R4oybB6l5hRI",
+        });
+    })();
     </script>
 </head>
 <body>
@@ -144,7 +149,6 @@
                     Testimonial
                 </label>
             </div>
-            
 
             <label for="message">Your Message:</label>
             <textarea id="message" name="message" rows="4" required></textarea>
@@ -153,10 +157,6 @@
         </form>
         <a href="#top" class="home-link">Home</a>
     </section>
-
-    <footer>
-        <p>&copy; 2024 LifeWave X39. All rights reserved.</p>
-    </footer>
 
     <script>
         function handleFormSubmit() {
@@ -167,17 +167,29 @@
                 message_type: document.querySelector('input[name="message_type"]:checked').value,
                 message: document.getElementById('message').value
             };
-    
-            // Send data to EmailJS
-            emailjs.send("service_ky741q6", "template_ox5e0mh", formData)
-                .then(function(response) {
-                    alert("Thank you! Your message has been sent.");
-                    document.getElementById('contact-form').reset(); // Clear the form after submission
-                }, function(error) {
-                    alert("An error occurred. Please try again.");
-                    console.error("EmailJS error:", error);
-                });
+
+            // Save to localStorage
+            const submissions = JSON.parse(localStorage.getItem('submissions')) || [];
+            submissions.push(formData);
+            localStorage.setItem('submissions', JSON.stringify(submissions));
+
+            // Notify user
+            alert("Thank you! Your message has been saved.");
+
+            // Clear the form
+            document.getElementById('contact-form').reset();
         }
+
+        // Optional: Function to retrieve and display stored submissions
+        function displaySubmissions() {
+            const submissions = JSON.parse(localStorage.getItem('submissions')) || [];
+            submissions.forEach((submission, index) => {
+                console.log(`Submission ${index + 1}:`, submission);
+            });
+        }
+        
+        // Call this function to see stored submissions
+        displaySubmissions();
     </script>
     
 </body>
