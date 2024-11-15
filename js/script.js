@@ -1,17 +1,17 @@
-// Collapsible FAQ
 document.querySelectorAll('.faq-question').forEach(button => {
     button.addEventListener('click', () => {
-        const answer = button.nextElementSibling;
+        const answer = button.nextElementSibling; // Get the answer for this question
+        const allAnswers = document.querySelectorAll('.faq-answer');
 
-        // Close other open answers
-        document.querySelectorAll('.faq-answer').forEach(otherAnswer => {
-            if (otherAnswer !== answer) {
-                otherAnswer.style.display = 'none';
+        // Close all other answers
+        allAnswers.forEach(a => {
+            if (a !== answer) {
+                a.classList.remove('active');
             }
         });
 
-        // Toggle the answer for the clicked question
-        answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+        // Toggle the clicked answer
+        answer.classList.toggle('active');
     });
 });
 
@@ -68,3 +68,35 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         });
     });
 });
+
+function handleFormSubmit() {
+    // Collect form data
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        message_type: document.querySelector('input[name="message_type"]:checked').value,
+        message: document.getElementById('message').value
+    };
+
+    // Save to localStorage
+    const submissions = JSON.parse(localStorage.getItem('submissions')) || [];
+    submissions.push(formData);
+    localStorage.setItem('submissions', JSON.stringify(submissions));
+
+    // Notify user
+    alert("Thank you! Your message has been saved.");
+
+    // Clear the form
+    document.getElementById('contact-form').reset();
+}
+
+// Optional: Function to retrieve and display stored submissions
+function displaySubmissions() {
+    const submissions = JSON.parse(localStorage.getItem('submissions')) || [];
+    submissions.forEach((submission, index) => {
+        console.log(`Submission ${index + 1}:`, submission);
+    });
+}
+
+// Call this function to see stored submissions
+displaySubmissions();

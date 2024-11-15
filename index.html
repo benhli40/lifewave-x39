@@ -11,6 +11,7 @@
     <meta name="robots" content="index, follow">
     <title>LifeWave X39 - Natural Healing Patch</title>
     <link rel="stylesheet" href="css/styles.css">
+
     <script type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
     </script>
@@ -47,67 +48,65 @@
     </section>
 
     <section id="faqs">
-        <section id="faqs">
-            <h2>FAQs</h2>
-            <div class="faq-item">
-                <button class="faq-question">
-                    Do you have unlimited, unmitigated pain?
-                </button>
-                <div class="faq-answer">
-                    <p>
-                        If yes, keep reading. The LifeWave X39 patch is designed 
-                        to help you manage pain <br> in a non-invasive, drug-free 
-                        way.
-                    </p>
-                </div>
+        <h2>FAQs</h2>
+        <div class="faq-item">
+            <button class="faq-question">
+                Do you have unlimited, unmitigated pain?
+            </button>
+            <div class="faq-answer">
+                <p>
+                    If yes, keep reading. The LifeWave X39 patch is designed 
+                    to help you manage pain <br> in a non-invasive, drug-free 
+                    way.
+                </p>
             </div>
-            <div class="faq-item">
-                <button class="faq-question">Is your pain chronic?</button>
-                <div class="faq-answer">
-                    <p>
-                        If you experience chronic pain that limits your quality
-                        of life, <br> the LifeWave X39 patch could be a natural 
-                        solution to help alleviate your discomfort.
-                    </p>
-                </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">Is your pain chronic?</button>
+            <div class="faq-answer">
+                <p>
+                    If you experience chronic pain that limits your quality
+                    of life, <br> the LifeWave X39 patch could be a natural 
+                    solution to help alleviate your discomfort.
+                </p>
             </div>
-            <div class="faq-item">
-                <button class="faq-question">
-                    Are you looking for a non-invasive way to manage pain?
-                </button>
-                <div class="faq-answer">
-                    <p>
-                        The LifeWave X39 patch uses phototherapy to stimulate 
-                        your body’s <br> natural healing processes, without the 
-                        need for pills or injections.
-                    </p>
-                </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">
+                Are you looking for a non-invasive way to manage pain?
+            </button>
+            <div class="faq-answer">
+                <p>
+                    The LifeWave X39 patch uses phototherapy to stimulate 
+                    your body’s <br> natural healing processes, without the 
+                    need for pills or injections.
+                </p>
             </div>
-            <div class="faq-item">
-                <button class="faq-question">
-                    Would you like to increase your energy and vitality?
-                </button>
-                <div class="faq-answer">
-                    <p>
-                        Along with pain relief, the LifeWave X39 patch can 
-                        enhance your energy <br> levels, vitality, and overall 
-                        wellness.
-                    </p>
-                </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">
+                Would you like to increase your energy and vitality?
+            </button>
+            <div class="faq-answer">
+                <p>
+                    Along with pain relief, the LifeWave X39 patch can 
+                    enhance your energy <br> levels, vitality, and overall 
+                    wellness.
+                </p>
             </div>
-            <div class="faq-item">
-                <button class="faq-question">
-                    Ready to try LifeWave X39?                    
-                </button>
-                <div class="faq-answer">
-                    <p>
-                        Order now to start experiencing the benefits of this 
-                        innovative, non-invasive patch.
-                    </p>
-                </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">
+                Ready to try LifeWave X39?                    
+            </button>
+            <div class="faq-answer">
+                <p>
+                    Order now to start experiencing the benefits of this 
+                    innovative, non-invasive patch.
+                </p>
             </div>
-        </section>
-        
+        </div>
+
         <a href="#top" class="home-link">Home</a>
     </section>
 
@@ -157,40 +156,7 @@
         </form>
         <a href="#top" class="home-link">Home</a>
     </section>
-
-    <script>
-        function handleFormSubmit() {
-            // Collect form data
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                message_type: document.querySelector('input[name="message_type"]:checked').value,
-                message: document.getElementById('message').value
-            };
-
-            // Save to localStorage
-            const submissions = JSON.parse(localStorage.getItem('submissions')) || [];
-            submissions.push(formData);
-            localStorage.setItem('submissions', JSON.stringify(submissions));
-
-            // Notify user
-            alert("Thank you! Your message has been saved.");
-
-            // Clear the form
-            document.getElementById('contact-form').reset();
-        }
-
-        // Optional: Function to retrieve and display stored submissions
-        function displaySubmissions() {
-            const submissions = JSON.parse(localStorage.getItem('submissions')) || [];
-            submissions.forEach((submission, index) => {
-                console.log(`Submission ${index + 1}:`, submission);
-            });
-        }
-        
-        // Call this function to see stored submissions
-        displaySubmissions();
-    </script>
     
+    <script type="text/javascript" src="js/script.js"> </script>
 </body>
 </html>
