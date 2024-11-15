@@ -78,25 +78,20 @@ function handleFormSubmit() {
         message: document.getElementById('message').value
     };
 
-    // Save to localStorage
-    const submissions = JSON.parse(localStorage.getItem('submissions')) || [];
-    submissions.push(formData);
-    localStorage.setItem('submissions', JSON.stringify(submissions));
+    // EmailJS: Replace these placeholders with your service ID and template ID
+    const serviceID = 'service_n8gyl7q';
+    const templateID = 'template_ox5e0mh';
 
-    // Notify user
-    alert("Thank you! Your message has been saved.");
+    emailjs.send(serviceID, templateID, formData)
+        .then(response => {
+            console.log('SUCCESS!', response.status, response.text);
+            alert("Thank you! Your message has been sent.");
+        })
+        .catch(error => {
+            console.error('FAILED...', error);
+            alert("An error occurred. Please try again.");
+        });
 
     // Clear the form
     document.getElementById('contact-form').reset();
 }
-
-// Optional: Function to retrieve and display stored submissions
-function displaySubmissions() {
-    const submissions = JSON.parse(localStorage.getItem('submissions')) || [];
-    submissions.forEach((submission, index) => {
-        console.log(`Submission ${index + 1}:`, submission);
-    });
-}
-
-// Call this function to see stored submissions
-displaySubmissions();
