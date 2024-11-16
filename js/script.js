@@ -54,7 +54,7 @@ function startCarousel() {
 
 // Initialize EmailJS (if used)
 (function(){
-    emailjs.init("dkBD1ujhYesT5ZGBb");
+    emailjs.init("dkBD1uJhYesT5ZGBb");
 })();
 
 // Smooth scrolling for all anchor links
@@ -79,7 +79,7 @@ function handleFormSubmit() {
     };
 
     // EmailJS: Replace these placeholders with your service ID and template ID
-    const serviceID = 'service_32v623i';
+    const serviceID = 'service_3zv623i';
     const templateID = 'template_wt94wm6';
 
     emailjs.send(serviceID, templateID, formData)
