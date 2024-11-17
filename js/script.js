@@ -70,13 +70,18 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Form Submission Handling
 document.getElementById("contact-form").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault(); // Prevent default form submission
 
     // Collect form data
-    const formData = {
+    const formDataForBrian = {
         user_name: document.getElementById('name').value,
         user_email: document.getElementById('email').value,
         user_message: document.getElementById('message').value
+    };
+
+    const formDataForUser = {
+        user_name: document.getElementById('name').value, // Only name is needed for reply
+        user_email: document.getElementById('email').value // User's email for reply
     };
 
     // EmailJS IDs for sending to Brian
@@ -88,15 +93,12 @@ document.getElementById("contact-form").addEventListener("submit", function(even
     const templateToUser = 'template_b4o440x';
 
     // Send email to Brian
-    emailjs.send(serviceToBrian, templateToBrian, formData)
+    emailjs.send(serviceToBrian, templateToBrian, formDataForBrian)
         .then(response => {
             console.log('Message sent to Brian successfully:', response.status, response.text);
 
             // Send auto-reply to the user
-            return emailjs.send(serviceToUser, templateToUser, {
-                user_name: formData.user_name,
-                user_email: formData.user_email
-            });
+            return emailjs.send(serviceToUser, templateToUser, formDataForUser);
         })
         .then(response => {
             console.log('Auto-reply sent to user successfully:', response.status, response.text);
