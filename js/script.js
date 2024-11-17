@@ -1,3 +1,4 @@
+// FAQ Toggle Functionality
 document.querySelectorAll('.faq-question').forEach(button => {
     button.addEventListener('click', () => {
         const answer = button.nextElementSibling; // Get the answer for this question
@@ -21,22 +22,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const defaultMessage = document.querySelector('#default-message');
     const carousel = document.querySelector('#testimonial-carousel');
 
-    // Check if there are any real testimonials (in this case, we'll simulate)
-    const hasTestimonials = false; // Set to true if testimonials are available
+    // Simulate testimonials availability
+    const hasTestimonials = false; // Change to true if testimonials are available
 
     if (hasTestimonials) {
-        // Hide default message, show carousel, and start rotating
         defaultMessage.style.display = 'none';
         carousel.style.display = 'block';
         startCarousel();
     } else {
-        // Show default message, hide carousel
         defaultMessage.style.display = 'block';
         carousel.style.display = 'none';
     }
 });
 
-// Carousel functionality for placeholder testimonials
+// Carousel functionality
 let carouselIndex = 0;
 
 function startCarousel() {
@@ -52,12 +51,12 @@ function startCarousel() {
     }, 3000);
 }
 
-// Initialize EmailJS (if used)
-(function(){
-    emailjs.init("dkBD1uJhYesT5ZGBb");
+// EmailJS Initialization
+(function() {
+    emailjs.init("dkBD1uJhYesT5ZGBb"); // Replace with your actual EmailJS user ID
 })();
 
-// Smooth scrolling for all anchor links
+// Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -69,29 +68,45 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-function handleFormSubmit() {
+// Form Submission Handling
+document.getElementById("contact-form").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
     // Collect form data
     const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        message_type: document.querySelector('input[name="message_type"]:checked').value,
-        message: document.getElementById('message').value
+        user_name: document.getElementById('name').value,
+        user_email: document.getElementById('email').value,
+        user_message: document.getElementById('message').value
     };
 
-    // EmailJS: Replace these placeholders with your service ID and template ID
-    const serviceID = 'service_3zv623i';
-    const templateID = 'template_wt94wm6';
+    // EmailJS IDs for sending to Brian
+    const serviceToBrian = 'service_3zv623i';
+    const templateToBrian = 'template_wt94wm6';
 
-    emailjs.send(serviceID, templateID, formData)
+    // EmailJS IDs for auto-reply to the user
+    const serviceToUser = 'service_sxmb19o';
+    const templateToUser = 'template_b4o440x';
+
+    // Send email to Brian
+    emailjs.send(serviceToBrian, templateToBrian, formData)
         .then(response => {
-            console.log('SUCCESS!', response.status, response.text);
+            console.log('Message sent to Brian successfully:', response.status, response.text);
+
+            // Send auto-reply to the user
+            return emailjs.send(serviceToUser, templateToUser, {
+                user_name: formData.user_name,
+                user_email: formData.user_email
+            });
+        })
+        .then(response => {
+            console.log('Auto-reply sent to user successfully:', response.status, response.text);
             alert("Thank you! Your message has been sent.");
         })
         .catch(error => {
-            console.error('FAILED...', error);
+            console.error('Failed to send messages:', error);
             alert("An error occurred. Please try again.");
         });
 
     // Clear the form
     document.getElementById('contact-form').reset();
-}
+});
