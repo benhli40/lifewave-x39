@@ -88,10 +88,6 @@ document.getElementById("contact-form").addEventListener("submit", function(even
     const serviceToBrian = 'service_3zv623i';
     const templateToBrian = 'template_wt94wm6';
 
-    // EmailJS IDs for auto-reply to the user
-    const serviceToUser = 'service_sxmb19o';
-    const templateToUser = 'template_b4o440x';
-
     // Send email to Brian
     emailjs.send(serviceToBrian, templateToBrian, formDataForBrian)
         .then(response => {
