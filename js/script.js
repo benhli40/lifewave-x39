@@ -52,7 +52,7 @@ function startCarousel() {
 }
 
 // EmailJS Initialization
-(function() {
+(function () {
     emailjs.init("dkBD1uJhYesT5ZGBb"); // Replace with your actual EmailJS user ID
 })();
 
@@ -97,3 +97,36 @@ document.getElementById("contact-form").addEventListener("submit", function(even
     // Clear the form
     document.getElementById('contact-form').reset();
 });
+
+function handleFormSubmit() {
+    console.log("handleFormSubmit called"); // Debugging: ensure the function is executed
+
+    // Collect form data
+    const formData = {
+        user_name: document.getElementById("name").value,
+        user_email: document.getElementById("email").value,
+        message_type: document.querySelector('input[name="message_type"]:checked').value,
+        user_message: document.getElementById("message").value,
+    };
+
+    console.log("Collected form data:", formData); // Debugging: ensure data is collected correctly
+
+    // EmailJS IDs
+    const serviceID = "service_3zv623i"; // Replace with your EmailJS Service ID
+    const templateID = "template_wt94wm6"; // Replace with your EmailJS Template ID
+
+    // Send the email
+    emailjs
+        .send(serviceID, templateID, formData)
+        .then((response) => {
+            console.log("Email sent successfully:", response.status, response.text);
+            alert("Thank you! Your message has been sent.");
+
+            // Clear the form
+            document.getElementById("contact-form").reset();
+        })
+        .catch((error) => {
+            console.error("Failed to send email:", error);
+            alert("An error occurred while sending your message. Please try again.");
+        });
+}
