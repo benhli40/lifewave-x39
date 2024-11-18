@@ -79,11 +79,6 @@ document.getElementById("contact-form").addEventListener("submit", function(even
         user_message: document.getElementById('message').value
     };
 
-    const formDataForUser = {
-        user_name: document.getElementById('name').value, // Only name is needed for reply
-        user_email: document.getElementById('email').value // User's email for reply
-    };
-
     // EmailJS IDs for sending to Brian
     const serviceToBrian = 'service_3zv623i';
     const templateToBrian = 'template_wt94wm6';
@@ -92,16 +87,10 @@ document.getElementById("contact-form").addEventListener("submit", function(even
     emailjs.send(serviceToBrian, templateToBrian, formDataForBrian)
         .then(response => {
             console.log('Message sent to Brian successfully:', response.status, response.text);
-
-            // Send auto-reply to the user
-            return emailjs.send(serviceToUser, templateToUser, formDataForUser);
-        })
-        .then(response => {
-            console.log('Auto-reply sent to user successfully:', response.status, response.text);
             alert("Thank you! Your message has been sent.");
         })
         .catch(error => {
-            console.error('Failed to send messages:', error);
+            console.error('Failed to send message:', error);
             alert("An error occurred. Please try again.");
         });
 
