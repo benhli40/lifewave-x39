@@ -114,45 +114,46 @@ document.getElementById("contact-form").addEventListener("submit", function(even
 
 // Form Submission Handling
 function handleFormSubmit() {
-    console.log("handleFormSubmit called"); // Debugging: confirm function execution
+    console.log("handleFormSubmit called");
 
     // Collect form data for Brian and the user
     const formDataForBrian = {
-        user_name: document.getElementById("name").value,
-        user_email: document.getElementById("email").value,
-        message_type: document.querySelector('input[name="message_type"]:checked').value,
-        user_message: document.getElementById("message").value,
+        user_name: document.getElementById('name').value,
+        user_email: document.getElementById('email').value,
+        user_message: document.getElementById('message').value,
     };
 
     const formDataForUser = {
-        user_name: document.getElementById("name").value, // User's name for the reply email
-        user_email: document.getElementById("email").value, // User's email for the reply email
+        user_name: formDataForBrian.user_name, // User's name
+        user_email: formDataForBrian.user_email, // User's email
+        user_message: formDataForBrian.user_message, // Original message
     };
 
     // EmailJS IDs
-    const serviceToBrian = 'service_3zv623i'; // Service for Brian's email
-    const templateToBrian = 'template_wt94wm6'; // Template for Brian's email
+    const serviceToBrian = 'service_3zv623i'; // Service for Brian
+    const templateToBrian = 'template_wt94wm6'; // Template for Brian
 
-    const serviceToUser = 'service_fquqxa9'; // Service for user's email
-    const templateToUser = 'template_lc6mzul'; // Template for user's auto-reply
+    const serviceToUser = 'service_fquqxa9'; // Service for user auto-reply
+    const templateToUser = 'template_lc6mzul'; // Template for user auto-reply
 
     // Send email to Brian
     emailjs.send(serviceToBrian, templateToBrian, formDataForBrian)
         .then(response => {
             console.log('Message sent to Brian successfully:', response.status, response.text);
 
-            // Send auto-reply to the user after Brian's email is sent
+            // Send auto-reply to the user
+            console.log('Sending auto-reply with data:', formDataForUser);
             return emailjs.send(serviceToUser, templateToUser, formDataForUser);
         })
         .then(response => {
             console.log('Auto-reply sent to user successfully:', response.status, response.text);
-            alert("Thank you! Your message has been sent. A confirmation email has been sent to your address.");
+            alert("Thank you! Your message has been sent, and a confirmation email is on its way to your inbox.");
         })
         .catch(error => {
-            console.error('Failed to send messages:', error);
-            alert("An error occurred. Please try again.");
+            console.error('Failed to send message(s):', error);
+            alert("An error occurred while sending your message. Please try again.");
         });
 
     // Clear the form
-    document.getElementById("contact-form").reset();
+    document.getElementById('contact-form').reset();
 }
