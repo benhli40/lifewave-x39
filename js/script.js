@@ -72,61 +72,87 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 document.getElementById("contact-form").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent default form submission
 
-    // Collect form data
-    const formDataForBrian = {
+    // Collect form data for Brian and the user
+    const formData = {
         user_name: document.getElementById('name').value,
         user_email: document.getElementById('email').value,
-        user_message: document.getElementById('message').value
+        user_message: document.getElementById('message').value,
     };
 
-    // EmailJS IDs for sending to Brian
-    const serviceToBrian = 'service_3zv623i';
-    const templateToBrian = 'template_wt94wm6';
+    const serviceToBrian = 'service_3zv623i'; // EmailJS service for Brian
+    const templateToBrian = 'template_wt94wm6'; // EmailJS template for Brian
+
+    const serviceToUser = 'service_fquqxa9'; // EmailJS service for user
+    const templateToUser = 'template_lc6mzul'; // EmailJS template for user auto-reply
 
     // Send email to Brian
-    emailjs.send(serviceToBrian, templateToBrian, formDataForBrian)
+    emailjs.send(serviceToBrian, templateToBrian, formData)
         .then(response => {
             console.log('Message sent to Brian successfully:', response.status, response.text);
-            alert("Thank you! Your message has been sent.");
+
+            // Send auto-reply to the user
+            const formDataForUser = {
+                user_name: formData.user_name, // User's name
+                user_email: formData.user_email, // User's email
+                user_message: formData.user_message, // Original message
+            };
+
+            return emailjs.send(serviceToUser, templateToUser, formDataForUser);
+        })
+        .then(response => {
+            console.log('Auto-reply sent to user successfully:', response.status, response.text);
+            alert("Thank you! Your message has been sent, and a confirmation email is on its way to your inbox.");
         })
         .catch(error => {
-            console.error('Failed to send message:', error);
-            alert("An error occurred. Please try again.");
+            console.error('Failed to send message(s):', error);
+            alert("An error occurred while sending your message. Please try again.");
         });
 
     // Clear the form
     document.getElementById('contact-form').reset();
 });
 
+// Form Submission Handling
 function handleFormSubmit() {
-    console.log("handleFormSubmit called"); // Debugging: ensure the function is executed
+    console.log("handleFormSubmit called"); // Debugging: confirm function execution
 
-    // Collect form data
-    const formData = {
+    // Collect form data for Brian and the user
+    const formDataForBrian = {
         user_name: document.getElementById("name").value,
         user_email: document.getElementById("email").value,
         message_type: document.querySelector('input[name="message_type"]:checked').value,
         user_message: document.getElementById("message").value,
     };
 
-    console.log("Collected form data:", formData); // Debugging: ensure data is collected correctly
+    const formDataForUser = {
+        user_name: document.getElementById("name").value, // User's name for the reply email
+        user_email: document.getElementById("email").value, // User's email for the reply email
+    };
 
     // EmailJS IDs
-    const serviceID = "service_3zv623i"; // Replace with your EmailJS Service ID
-    const templateID = "template_wt94wm6"; // Replace with your EmailJS Template ID
+    const serviceToBrian = 'service_3zv623i'; // Service for Brian's email
+    const templateToBrian = 'template_wt94wm6'; // Template for Brian's email
 
-    // Send the email
-    emailjs
-        .send(serviceID, templateID, formData)
-        .then((response) => {
-            console.log("Email sent successfully:", response.status, response.text);
-            alert("Thank you! Your message has been sent.");
+    const serviceToUser = 'service_fquqxa9'; // Service for user's email
+    const templateToUser = 'template_lc6mzul'; // Template for user's auto-reply
 
-            // Clear the form
-            document.getElementById("contact-form").reset();
+    // Send email to Brian
+    emailjs.send(serviceToBrian, templateToBrian, formDataForBrian)
+        .then(response => {
+            console.log('Message sent to Brian successfully:', response.status, response.text);
+
+            // Send auto-reply to the user after Brian's email is sent
+            return emailjs.send(serviceToUser, templateToUser, formDataForUser);
         })
-        .catch((error) => {
-            console.error("Failed to send email:", error);
-            alert("An error occurred while sending your message. Please try again.");
+        .then(response => {
+            console.log('Auto-reply sent to user successfully:', response.status, response.text);
+            alert("Thank you! Your message has been sent. A confirmation email has been sent to your address.");
+        })
+        .catch(error => {
+            console.error('Failed to send messages:', error);
+            alert("An error occurred. Please try again.");
         });
+
+    // Clear the form
+    document.getElementById("contact-form").reset();
 }
